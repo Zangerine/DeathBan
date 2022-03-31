@@ -7,7 +7,14 @@ depend: [ Litebans ]
 authors: [ Karizmattic ]
 description: A plugin to handle death bans, hooking into Litebans.
 website: minegard.net
+commands:
+  dbreload:
+    description: Reloads the config
+    default: op
 permissions:
+  deathban.reload:
+    description: Allows you to reload the config
+    default: op
   deathban.exempt:
     description: Exemption from Death Ban
     default: op

@@ -22,29 +22,11 @@ public class PlayerDeathHandler implements Listener {
         Player p = e.getEntity();
         boolean debug = Config.getBool("console-log");
 
-        Bukkit.getScheduler().runTaskAsynchronously(DeathBan.getInstance(), new Runnable() {
-            public void run() {
-                UUID uuid = p.getUniqueId();
-                String ip;
-                try {
-                    ip = p.getAddress().getHostName();
-                } catch (NullPointerException ex) {
-                    ip = "127.0.0.1";
-                }
-                boolean isBanned = Database.get().isPlayerBanned(uuid, ip);
-                if(isBanned) {
-                    if(debug) DeathBan.getInstance().getLogger().info("Error! " + p.getName() + " appears to" +
-                            "already be banned!");
-                }
-            }
-        });
-
-
-
         String reason = LangUtils.col(Config.getString("ban-reason"));
+        String length = Config.getString("ban-length");
 
         if(!(p.hasPermission("deathban.exempt"))) {
-            Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "ban " + p.getName() + " 18h " + reason);
+            Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "ban " + p.getName() + " " + length + " " + reason);
         } else {
             if(debug) DeathBan.getInstance().getLogger().info(p.getName() + " is exempt from DeathBan.");
         }

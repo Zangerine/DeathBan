@@ -1,8 +1,11 @@
 package net.minegard.deathban;
 
+import net.minegard.deathban.commands.ReloadCommand;
 import net.minegard.deathban.events.PlayerDeathHandler;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
+
+import java.util.Objects;
 
 public final class DeathBan extends JavaPlugin {
 
@@ -14,6 +17,8 @@ public final class DeathBan extends JavaPlugin {
         saveDefaultConfig();
         Bukkit.getLogger().info("Plugin has enabled.");
         Bukkit.getPluginManager().registerEvents(new PlayerDeathHandler(), this);
+
+        Objects.requireNonNull(getCommand("dbreload")).setExecutor(new ReloadCommand());
     }
 
     @Override
