@@ -30,4 +30,5 @@ public class Config {
     public static String getString(String path) { return cfg.getString(path); }
     public static Integer getInt(String path) { return cfg.getInt(path); }
     public static Boolean getBool(String path) { return cfg.getBoolean(path); }
+    public static Double getDouble(String path) { return cfg.getDouble(path); }
 }
