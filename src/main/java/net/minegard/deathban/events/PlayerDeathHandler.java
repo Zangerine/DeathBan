@@ -9,6 +9,8 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import litebans.api.Database;
+import org.bukkit.scheduler.BukkitRunnable;
+import org.bukkit.scheduler.BukkitScheduler;
 
 import java.util.UUID;
 import java.util.logging.Level;
@@ -24,9 +26,17 @@ public class PlayerDeathHandler implements Listener {
 
         String reason = LangUtils.col(Config.getString("ban-reason"));
         String length = Config.getString("ban-length");
+        int banDelay = Config.getInt("ban-delay") * 20;
 
         if(!(p.hasPermission("deathban.exempt"))) {
-            Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "ban " + p.getName() + " " + length + " " + reason);
+            BukkitScheduler scheduler = DeathBan.getInstance().getServer().getScheduler();
+            scheduler.scheduleSyncDelayedTask(DeathBan.getInstance(), new Runnable() {
+                @Override
+                public void run() {
+                    Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "ban " + p.getName() + " " + length + " " + reason);
+                }
+            }, banDelay);
+
         } else {
             if(debug) DeathBan.getInstance().getLogger().info(p.getName() + " is exempt from DeathBan.");
         }

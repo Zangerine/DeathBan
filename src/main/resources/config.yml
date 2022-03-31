@@ -2,5 +2,7 @@
 ban-reason: "change me"
 # Uses the Litebans format
 ban-length: "18d"
+# The delay before they are banned in seconds
+ban-delay: 3
 # This will turn off console messages
 console-log: true
