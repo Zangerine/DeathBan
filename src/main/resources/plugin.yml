@@ -1,0 +1,13 @@
+name: DeathBan
+version: ${project.version}
+main: net.minegard.deathban.DeathBan
+api-version: 1.18
+prefix: DeathBan
+depend: [ Litebans ]
+authors: [ Karizmattic ]
+description: A plugin to handle death bans, hooking into Litebans.
+website: minegard.net
+permissions:
+  deathban.exempt:
+    description: Exemption from Death Ban
+    default: op
