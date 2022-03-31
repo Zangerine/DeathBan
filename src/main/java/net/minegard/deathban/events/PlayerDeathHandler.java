@@ -26,7 +26,7 @@ public class PlayerDeathHandler implements Listener {
 
         String reason = LangUtils.col(Config.getString("ban-reason"));
         String length = Config.getString("ban-length");
-        double banDelay = Config.getDouble("ban-delay") * 20;
+        double banDelay = Config.getDouble("ban-delay") * 20L;
 
         if(!(p.hasPermission("deathban.exempt"))) {
             BukkitScheduler scheduler = DeathBan.getInstance().getServer().getScheduler();
